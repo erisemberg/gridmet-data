@@ -1,0 +1,15 @@
+# source data
+rmax/
+rmin/
+sph/
+tmmn/
+tmmx/
+
+# intermediate files
+gridmet_cell_latlon.csv
+gridmet_zip3.csv
+zip3_r.tif
+
+# macOS metadata files 
+.DS_Store
+._*

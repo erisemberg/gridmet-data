@@ -9,28 +9,12 @@ cp gridmet-data/daily_means/*.csv.gz gridmet-data/unzipped/
 gunzip gridmet-data/unzipped/*.csv.gz
 ```
 
-To connect to dataset without loading into memory: 
+Example use case (calculating average temp/humidity for 90 days after drug start date), connecting to dataset in DuckDB to avoid loading into memory:
 
 ```
 library(duckdb)
+library(DBI) 
 
-csv_dir <- file.path(dir_data, "gridmet-data", "unzipped")
-files <- list.files(csv_dir,
-                    pattern = "^zip3_daily_means_.*\\.csv$",
-                    full.names = TRUE)
-duckdb_read_csv(
-  duck_con,
-  name = "exposures",
-  files = files,
-  temporary = TRUE,
-  header = TRUE,
-  delim = ","
-)
-```
-
-Example use case (calculating average temp/humidity for 90 days after drug start date):
-
-```
 csv_dir <- file.path(dir_data, "gridmet-data", "unzipped")
 files <- list.files(csv_dir,
                     pattern = "^zip3_daily_means_.*\\.csv$",
